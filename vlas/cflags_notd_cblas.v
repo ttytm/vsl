@@ -10,6 +10,4 @@ module vlas
 #flag -I@VMODROOT
 #flag -llapacke
 
-$if macos {
-	#include <lapacke.h>
-}
+#include <lapacke.h>
