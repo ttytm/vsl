@@ -1,0 +1,140 @@
+name: Linux CI
+
+on:
+  workflow_call:
+
+jobs:
+  setup:
+    strategy:
+      matrix:
+        os: ['ubuntu-20.04', 'ubuntu-latest']
+      fail-fast: false
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Setup V
+        uses: vlang/setup-v@v1.3
+        with:
+          check-latest: true
+      - name: V doctor
+        run: v doctor
+      - name: Install dependencies
+        uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: gfortran \
+            libxi-dev \
+            libxcursor-dev \
+            mesa-common-dev \
+            liblapacke-dev \
+            libopenblas-dev \
+            libgc-dev \
+            libgl1-mesa-dev \
+            libopenmpi-dev \
+            libhdf5-dev \
+            hdf5-tools \
+            opencl-headers
+          version: 1.0
+      - name: Checkout VSL
+        uses: actions/checkout@v4
+        with:
+          path: vsl
+      - name: Setup VSL as V Module
+        run: mv ./vsl ~/.vmodules
+      - name: Cache
+        uses: actions/cache/save@v3
+        with:
+          path: |
+            vlang
+            ~/.vmodules
+          key: ${{ matrix.os }}-${{ github.sha }}
+
+  test:
+    needs: setup
+    strategy:
+      matrix:
+        os: ['ubuntu-20.04', 'ubuntu-latest']
+        cc: ['tcc', 'gcc', 'clang']
+        flags: ['', '-prod']
+        exclude:
+          - cc: tcc
+            flags: -prod
+      fail-fast: false
+    runs-on: ${{ matrix.os }}
+    env:
+      VFLAGS: -cc ${{ matrix.cc }} ${{ matrix.flags }}
+    steps:
+      - name: Restore Cache
+        uses: actions/cache/restore@v3
+        with:
+          path: |
+            vlang
+            ~/.vmodules
+          key: ${{ matrix.os }}-${{ github.sha }}
+          fail-on-cache-miss: true
+      - name: Setup V
+        uses: vlang/setup-v@v1.3
+        with:
+          check-latest: true
+      - name: Setup dependencies
+        uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: gfortran \
+            libxi-dev \
+            libxcursor-dev \
+            mesa-common-dev \
+            liblapacke-dev \
+            libopenblas-dev \
+            libgc-dev \
+            libgl1-mesa-dev \
+            libopenmpi-dev \
+            libhdf5-dev \
+            hdf5-tools \
+            opencl-headers
+      - name: Execute Tests using Pure V Backend
+        run: v test ~/.vmodules/vsl
+      - name: Execute Tests using Pure V Backend with Pure C Blas
+        run: v -d cblas test ~/.vmodules/vsl
+
+  build-examples:
+    needs: setup
+    strategy:
+      matrix:
+        os: ['ubuntu-20.04', 'ubuntu-latest']
+        cc: ['tcc', 'gcc', 'clang']
+        flags: ['', '-prod']
+        exclude:
+          - cc: tcc
+            flags: -prod
+      fail-fast: false
+    runs-on: ${{ matrix.os }}
+    env:
+      VFLAGS: -cc ${{ matrix.cc }} ${{ matrix.flags }}
+    steps:
+      - name: Restore Cache
+        uses: actions/cache/restore@v3
+        with:
+          path: |
+            vlang
+            ~/.vmodules
+          key: ${{ matrix.os }}-${{ github.sha }}
+          fail-on-cache-miss: true
+      - name: Setup V
+        uses: vlang/setup-v@v1.3
+        with:
+          check-latest: true
+      - name: Setup dependencies
+        uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: gfortran \
+            libxi-dev \
+            libxcursor-dev \
+            mesa-common-dev \
+            liblapacke-dev \
+            libopenblas-dev \
+            libgc-dev \
+            libgl1-mesa-dev \
+            libopenmpi-dev \
+            libhdf5-dev \
+            hdf5-tools \
+            opencl-headers
+      - name: Build
+        run: ~/.vmodules/vsl/examples/build_examples.sh

@@ -1,0 +1,88 @@
+name: macOS CI
+
+on:
+  workflow_call:
+
+jobs:
+  setup:
+    runs-on: 'macos-latest'
+    steps:
+      - name: Setup V
+        uses: vlang/setup-v@v1.3
+        with:
+          check-latest: true
+      - name: V doctor
+        run: v doctor
+      - name: Checkout VSL
+        uses: actions/checkout@v4
+        with:
+          path: vsl
+      - name: Setup VSL as V Module
+        run: mv ./vsl ~/.vmodules
+      - name: Cache
+        uses: actions/cache/save@v3
+        with:
+          path: |
+            vlang
+            ~/.vmodules
+          key: ${{ runner.os }}-${{ github.sha }}
+
+  test:
+    needs: setup
+    strategy:
+      matrix:
+        os: ['macos-11', 'macos-latest']
+        cc: ['clang']
+        flags: ['', '-prod']
+      fail-fast: false
+    runs-on: ${{ matrix.os }}
+    env:
+      VFLAGS: -cc ${{ matrix.cc }} ${{ matrix.flags }}
+    steps:
+      - name: Restore Cache
+        uses: actions/cache/restore@v3
+        with:
+          path: |
+            vlang
+            ~/.vmodules
+          key: ${{ runner.os }}-${{ github.sha }}
+          fail-on-cache-miss: true
+      - name: Setup V
+        uses: vlang/setup-v@v1.3
+        with:
+          check-latest: true
+      - name: Setup dependencies
+        run: brew install coreutils gcc libomp hdf5 open-mpi openblas lapack opencl-headers
+      - name: Execute Tests using Pure V Backend
+        run: v -showcc test ~/.vmodules/vsl
+      - name: Execute Tests using Pure V Backend with Pure C Blas
+        run: v -showcc -d cblas test ~/.vmodules/vsl
+
+  build-examples:
+    needs: setup
+    strategy:
+      matrix:
+        os: ['macos-11', 'macos-latest']
+        cc: ['clang']
+        flags: ['', '-prod']
+      fail-fast: false
+    runs-on: ${{ matrix.os }}
+    env:
+      VFLAGS: -cc ${{ matrix.cc }} ${{ matrix.flags }}
+    steps:
+      - name: Restore Cache
+        uses: actions/cache/restore@v3
+        with:
+          path: |
+            vlang
+            ~/.vmodules
+          key: ${{ runner.os }}-${{ github.sha }}
+          fail-on-cache-miss: true
+      - name: Setup V
+        uses: vlang/setup-v@v1.3
+        with:
+          check-latest: true
+      - name: Setup dependencies
+        run: brew install coreutils gcc libomp hdf5 open-mpi openblas lapack opencl-headers
+      - name: Build
+        run: ~/.vmodules/vsl/examples/build_examples.sh

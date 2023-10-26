@@ -1,117 +1,18 @@
-name: VSL Continuous Integration
+name: CI
 
 concurrency:
   group: ci-${{ github.event.number }}
   cancel-in-progress: true
 
 on:
-  # Allows you to run this workflow manually from the Actions tab
+  push:
+  pull_request:
+  # Allow to trigger this workflow manually from the Actions tab.
   workflow_dispatch:
 
-  push:
-    branches:
-      - main
-
-  pull_request:
-    branches:
-      - main
-
 jobs:
-  run-tests-on-linux:
-    runs-on: ${{ matrix.os }}
+  linux:
+    uses: ./.github/workflows/linux.yml
 
-    strategy:
-      fail-fast: false
-      matrix:
-        os:
-          - ubuntu-22.04
-          - ubuntu-20.04
-        flags:
-          - ""
-          - "--prod"
-
-    steps:
-      - name: Checkout VSL
-        uses: actions/checkout@v3
-        with:
-          path: vsl
-
-      - name: Setup V
-        uses: vlang/setup-v@v1.3
-        with:
-          check-latest: true
-
-      - name: V doctor
-        run: v doctor
-
-      - name: Install dependencies
-        run: |
-          sudo apt-get update && \
-          sudo apt-get install --quiet -y --no-install-recommends \
-            gfortran \
-            libxi-dev \
-            libxcursor-dev \
-            mesa-common-dev \
-            liblapacke-dev \
-            libopenblas-dev \
-            libgc-dev \
-            libgl1-mesa-dev \
-            libopenmpi-dev \
-            libhdf5-dev \
-            hdf5-tools \
-            opencl-headers
-
-      - name: Move VSL source code to V Modules
-        run: mv ./vsl ~/.vmodules
-
-      - name: Execute Tests using Pure V Backend
-        run: ~/.vmodules/vsl/bin/test ${{ matrix.flags }}
-
-      - name: Execute Tests using Pure V Backend with Pure C Blas
-        run: ~/.vmodules/vsl/bin/test ${{ matrix.flags }} --use-cblas
-
-  run-tests-on-macos:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      fail-fast: false
-      matrix:
-        os:
-          - macos-latest
-        flags:
-          - ""
-          - "--prod"
-
-    steps:
-      - name: Checkout VSL
-        uses: actions/checkout@v3
-        with:
-          path: vsl
-
-      - name: Setup V
-        uses: vlang/setup-v@v1.3
-        with:
-          check-latest: true
-
-      - name: V doctor
-        run: v doctor
-
-      - name: Install dependencies
-        run: |
-          brew install coreutils
-          brew install gcc
-          brew install libomp
-          brew install hdf5
-          brew install open-mpi
-          brew install openblas
-          brew install lapack
-          brew install opencl-headers
-
-      - name: Move VSL source code to V Modules
-        run: mv ./vsl ~/.vmodules
-
-      - name: Execute Tests using Pure V Backend
-        run: ~/.vmodules/vsl/bin/test
-
-      - name: Execute Tests using Pure V Backend with Pure C Blas
-        run: ~/.vmodules/vsl/bin/test --use-cblas
+  macos:
+    uses: ./.github/workflows/macos.yml
