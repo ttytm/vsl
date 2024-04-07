@@ -1,8 +1,8 @@
 module roots
 
-import vsl.errors
-import vsl.func
 import math
+import errors
+import func
 
 // Find the root of a function by combining Newton's method with the bisection
 // method

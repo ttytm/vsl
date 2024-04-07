@@ -1,7 +1,7 @@
 module la
 
-import vsl.vlas
 import math
+import vlas
 
 /*
 * vector_rms_error returns the scaled root-mean-square of the difference between two vectors

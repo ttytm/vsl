@@ -1,8 +1,8 @@
 module diff
 
-import vsl.func
-import vsl.internal.prec
 import math
+import func
+import internal.prec
 
 pub fn backward(f func.Fn, x f64) (f64, f64) {
 	/*

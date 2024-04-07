@@ -2,8 +2,8 @@ module dist
 
 import math
 import strconv
-import vsl.errors
-import vsl.util
+import errors
+import util
 
 // text_hist prints a text histogram
 pub fn text_hist(labels []string, counts []int, barlen int) !string {

@@ -1,7 +1,7 @@
 module fun
 
 import math
-import vsl.errors
+import errors
 
 // InterpQuad computes a quadratic polynomial to perform interpolation either using 3 points
 // or 2 points and a known derivative

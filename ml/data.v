@@ -1,9 +1,9 @@
 module ml
 
 import math
-import vsl.util
-import vsl.la
-import vsl.errors
+import util
+import la
+import errors
 
 /*
 * Data<T> holds data in matrix format; e.g. for regression computations

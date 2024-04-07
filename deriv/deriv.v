@@ -1,7 +1,7 @@
 module deriv
 
-import vsl.func
-import vsl.internal.prec
+import func
+import internal.prec
 import math
 
 fn central_deriv(f func.Fn, x f64, h f64) (f64, f64, f64) {

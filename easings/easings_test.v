@@ -1,5 +1,5 @@
-import vsl.easings
-import vsl.float.float64
+import easings
+import float.float64
 
 // Linear tests
 fn test_linear_interpolation() {

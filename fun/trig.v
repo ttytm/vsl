@@ -1,7 +1,7 @@
 module fun
 
 import math
-import vsl.internal.prec
+import internal.prec
 
 // sinh(x) series
 // double-precision for |x| < 1.0

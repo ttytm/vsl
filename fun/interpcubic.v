@@ -1,7 +1,7 @@
 module fun
 
 import math
-import vsl.errors
+import errors
 
 // InterpCubic computes a cubic polynomial to perform interpolation either using 4 points
 // or 3 points and a known derivative

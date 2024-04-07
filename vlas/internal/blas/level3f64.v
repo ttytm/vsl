@@ -1,7 +1,7 @@
 module blas
 
-import vsl.float.float64
 import math
+import vsl.float.float64
 
 // dsyrk performs one of the symmetric rank-k operations
 //  C = alpha * A * Aᵀ + beta * C  if trans_a == .no_trans

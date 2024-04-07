@@ -1,6 +1,6 @@
 module vcl
 
-import vsl.vcl.internal.dl
+import internal.dl
 
 fn map_dl_err_code(code int) int {
 	match code {

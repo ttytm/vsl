@@ -3,8 +3,8 @@ module graph
 
 import strconv
 import math
-import vsl.errors
-import vsl.util
+import errors
+import util
 
 pub enum ShortestPaths {
 	fw // FW: Floyd-Warshall method

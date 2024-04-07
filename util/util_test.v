@@ -1,6 +1,6 @@
 module util
 
-import vsl.float.float64
+import float.float64
 
 fn test_arange() {
 	assert arange(3) == [0, 1, 2]

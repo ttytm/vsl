@@ -1,9 +1,9 @@
 module ml
 
 import math
-import vsl.gm
-import vsl.la
-import vsl.plot
+import gm
+import la
+import plot
 
 // Kmeans implements the K-means model (Observer of Data)
 @[heap]

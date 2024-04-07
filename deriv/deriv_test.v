@@ -1,8 +1,8 @@
 module deriv
 
-import vsl.func
-import vsl.float.float64
 import math
+import func
+import float.float64
 
 fn f1(x f64, _ []f64) f64 {
 	return math.exp(x)

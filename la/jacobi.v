@@ -1,7 +1,7 @@
 module la
 
 import math
-import vsl.errors
+import errors
 
 // jacobi performs the Jacobi transformation of a symmetric matrix to find its eigenvectors and
 // eigenvalues.

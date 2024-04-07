@@ -1,8 +1,8 @@
 module ml
 
-import vsl.la
-import vsl.plot
-import vsl.util
+import la
+import plot
+import util
 
 // LinReg implements a linear regression model
 @[heap]

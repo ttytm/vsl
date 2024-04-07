@@ -1,6 +1,6 @@
 module mpi
 
-import vsl.errors
+import errors
 
 fn C.MPI_Initialized(flag &int) int
 fn C.MPI_Init(argc int, argv &charptr) int

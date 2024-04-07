@@ -1,5 +1,5 @@
-import vsl.fit
-import vsl.float.float64
+import fit
+import float.float64
 
 fn test_linear_fit01() {
 	// data

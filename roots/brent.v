@@ -1,9 +1,9 @@
 module roots
 
-import vsl.errors
-import vsl.func
-import vsl.internal.prec
 import math
+import errors
+import func
+import internal.prec
 
 const itmax = 100
 

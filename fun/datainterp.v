@@ -1,7 +1,7 @@
 module fun
 
 import math
-import vsl.errors
+import errors
 
 // InterpFn defines the type of the implementation of the data interpolation
 pub type InterpFn = fn (mut o DataInterp, j int, x f64) f64

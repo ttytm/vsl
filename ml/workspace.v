@@ -2,7 +2,7 @@ module ml
 
 import math
 import math.stats
-import vsl.la
+import la
 
 // Stat holds statistics about data
 //

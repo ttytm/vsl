@@ -1,7 +1,7 @@
 module iter
 
-import vsl.fun
-import vsl.util
+import fun
+import util
 
 // combinations will return an array of all length `r` combinations of `data`
 // While waiting on https://github.com/vlang/v/issues/7753 to be fixed, the function

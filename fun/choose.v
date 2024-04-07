@@ -1,7 +1,7 @@
 module fun
 
 import math
-import vsl.internal.prec
+import internal.prec
 
 // Compute the binomial coefficient
 pub fn choose(n int, p int) f64 {

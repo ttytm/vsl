@@ -1,6 +1,6 @@
 module la
 
-import vsl.errors
+import errors
 
 // Triplet is a simple representation of a sparse matrix, where the indices and values
 // of this matrix are stored directly.

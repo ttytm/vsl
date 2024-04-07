@@ -1,4 +1,4 @@
-import vsl.fft
+import fft
 
 fn test_fft() {
 	// a simple FFT

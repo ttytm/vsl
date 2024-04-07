@@ -1,7 +1,7 @@
 module ml
 
-import vsl.la
-import vsl.util
+import la
+import util
 
 @[heap]
 pub struct ParamsReg[T] {

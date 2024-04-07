@@ -1,6 +1,6 @@
 module fun
 
-import vsl.float.float64
+import float.float64
 
 fn test_interp_cubic_01() {
 	// test set

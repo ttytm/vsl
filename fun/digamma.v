@@ -1,7 +1,7 @@
 module fun
 
 import math
-import vsl.poly
+import poly
 
 @[inline]
 pub fn digamma(x f64) f64 {

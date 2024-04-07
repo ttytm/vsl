@@ -1,8 +1,8 @@
 module fun
 
-import vsl.float.float64
 import math
-import vsl.util
+import util
+import float.float64
 
 fn test_sinusoid_01() {
 	// data

@@ -2,7 +2,7 @@ module fun
 
 import math
 import math.complex as cmplx
-import vsl.errors
+import errors
 
 // beta computes the beta function by calling the log_gamma_sign function
 pub fn beta(a f64, b f64) f64 {

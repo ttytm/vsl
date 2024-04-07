@@ -1,7 +1,7 @@
 module fun
 
 import math
-import vsl.internal.prec
+import internal.prec
 
 // data for a Chebyshev series over a given interval
 pub struct ChebSeries {

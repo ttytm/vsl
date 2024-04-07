@@ -1,6 +1,6 @@
 module ml
 
-import vsl.float.float64
+import float.float64
 
 fn test_params_reg() {
 	nb_features := 3

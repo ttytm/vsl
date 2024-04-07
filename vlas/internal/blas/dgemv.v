@@ -1,7 +1,7 @@
 module blas
 
-import vsl.float.float64
 import math
+import vsl.float.float64
 
 // dgemv computes
 //  y = alpha * A * x + beta * y   if trans_a = .no_trans

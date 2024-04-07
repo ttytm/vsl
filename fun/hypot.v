@@ -1,8 +1,8 @@
 module fun
 
 import math
-import vsl.errors
-import vsl.internal.prec
+import errors
+import internal.prec
 
 pub fn hypot(x f64, y f64) f64 {
 	if math.is_inf(x, 0) || math.is_inf(y, 0) {

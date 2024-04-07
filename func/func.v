@@ -1,7 +1,7 @@
 module func
 
 import math
-import vsl.errors
+import errors
 
 pub type ArbitraryFn = fn (x f64, params []f64) f64
 

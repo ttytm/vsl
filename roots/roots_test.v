@@ -1,8 +1,8 @@
 module roots
 
-import vsl.func
-import vsl.float.float64
 import math
+import func
+import float.float64
 
 const epsabs = 0.0001
 const epsrel = 0.00001

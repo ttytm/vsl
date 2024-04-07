@@ -1,7 +1,7 @@
 module roots
 
-import vsl.func
 import math
+import func
 
 // Bisection implements a bisection method for finding the root of a function
 pub struct Bisection {

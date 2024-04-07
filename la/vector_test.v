@@ -1,6 +1,6 @@
 module la
 
-import vsl.float.float64
+import float.float64
 
 fn tolerance_equal(data1 []f64, data2 []f64) bool {
 	if data1.len != data2.len {

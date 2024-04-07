@@ -2,7 +2,7 @@ module la
 
 import math
 import strconv
-import vsl.errors
+import errors
 
 @[heap]
 pub struct Matrix[T] {

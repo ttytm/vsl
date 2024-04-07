@@ -1,8 +1,8 @@
 module roots
 
-import vsl.errors
-import vsl.func
 import math
+import errors
+import func
 
 // Find the root of a function using Newton's algorithm with the Armijo line
 // search to ensure the absolute value of the function decreases along the

@@ -1,8 +1,8 @@
 module diff
 
 import math
-import vsl.float.float64
-import vsl.func
+import float.float64
+import func
 
 fn f1(x f64, _ []f64) f64 {
 	return math.exp(x)

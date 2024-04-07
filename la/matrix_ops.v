@@ -1,8 +1,8 @@
 module la
 
-import vsl.errors
-import vsl.vlas
 import math
+import errors
+import vlas
 
 // det computes the determinant of matrix using the LU factorization
 // NOTE: this method may fail due to overflow...

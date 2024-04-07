@@ -1,6 +1,6 @@
 module la
 
-import vsl.float.float64
+import float.float64
 
 fn test_jacobi01() {
 	mut a := Matrix.deep2([

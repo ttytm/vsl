@@ -1,7 +1,7 @@
 module la
 
-import vsl.errors
-import vsl.mpi
+import errors
+import mpi
 
 // The SparseConfig structure holds configuration arguments for sparse solvers
 pub struct SparseConfig {

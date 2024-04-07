@@ -1,6 +1,6 @@
 module la
 
-import vsl.float.float64
+import float.float64
 
 const debsesol_tests_tol = 1e-12
 

@@ -2,8 +2,8 @@ module blas
 
 // import runtime
 import sync
-import vsl.float.float64
 import math
+import vsl.float.float64
 
 // dgemm performs one of the matrix-matrix operations
 //  C = alpha * A * B + beta * C

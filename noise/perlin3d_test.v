@@ -1,7 +1,7 @@
 module noise
 
 import rand
-import vsl.float.float64
+import float.float64
 
 fn test_perlin3d() {
 	rand.seed([u32(3155200429), u32(3208395956)])

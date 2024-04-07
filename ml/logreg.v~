@@ -1,8 +1,8 @@
 module ml
 
 import math
-import vsl.fun
-import vsl.la
+import fun
+import la
 
 // LogReg implements a logistic regression model (Observer of Data)
 pub struct LogReg {

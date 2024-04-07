@@ -1,6 +1,6 @@
 module ml
 
-import vsl.la
+import la
 
 fn check_xy_01(x &la.Matrix[f64], y []f64) {
 	expected := [

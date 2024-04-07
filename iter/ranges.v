@@ -1,7 +1,7 @@
 module iter
 
 import math
-import vsl.errors
+import errors
 
 struct IntIter {
 	start i64

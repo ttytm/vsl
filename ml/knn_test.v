@@ -1,6 +1,6 @@
 module ml
 
-import vsl.la
+import la
 
 fn test_knn_predict() {
 	x := [
